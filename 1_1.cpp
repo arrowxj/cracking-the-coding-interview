@@ -7,12 +7,12 @@ class solution{
 		bool IsStringSame(string &s){
 			if(s.empty())
 				return false;
-			int table[128];
-			for(int i=0;i<128;++i)
+			int table[256];
+			for(int i=0;i<256;++i)
 				table[i]=0;
 			for(string::size_type j=0; j<s.size();++j)
 			{
-				int t = s[j]%128;
+				int t = s[j]%256;
 				table[t]++;
 				if(table[t]>1)
 					return false;
@@ -25,12 +25,12 @@ bool IsStringSame(string &s)
 {
 	if(s.empty())
 		return false;
-	int table[128];
-	for(int i=0;i<128;++i)
+	int table[256];
+	for(int i=0;i<256;++i)
 		table[i]=0;
 	for(string::size_type j=0; j<s.size();++j)
 	{
-		int t = s[j]%128;			
+		int t = s[j]%256;			
 		table[t]++;
 		if(table[t]>1)
 		return false;
