@@ -24,7 +24,7 @@ node* LinkListStruct(int a[],int n)
 			p->next = nd;
 			p = nd;
 		}
-		//nd->next = NULL;
+		nd->next = NULL;
 	}
 	return head;
 }
