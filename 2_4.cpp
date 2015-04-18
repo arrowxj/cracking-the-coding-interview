@@ -37,6 +37,7 @@ void print(node *head)
 	return;
 }
 
+//时间复杂度 O（n^2）
 void sort(node *head, int k)
 {
 	if(!head)
@@ -60,12 +61,55 @@ void sort(node *head, int k)
 	}
 	return;
 }
+
+void sort1(node *head, int k)
+{
+	if(!head)
+		return;
+	node *smaller = NULL, *larger=NULL,*s_end=NULL, *l_end=NULL;
+	node *p = head;
+	while(p)
+	{
+		if(p->data>k)
+		{
+			if(!larger)  
+				larger = l_end = p;
+			else
+			{
+				l_end->next = p;
+				l_end = p;
+			}
+		}
+		else
+		{
+			if(!smaller)
+				smaller = s_end = p;
+			else
+			{
+				s_end->next = p;
+				s_end = p;
+			}
+		}
+		p = p->next;
+	}
+	if(!smaller)
+	{
+		s_end->next = larger;
+		head = smaller;
+	}
+	else
+		head = larger;
+	return;
+}
+
 int main()
 {
 	int a[] = {2,5,3,2,7};
 	node *head = LinkList(a,5);
 	print(head);
 	sort(head,4);
+	print(head);
+	sort1(head,4);
 	print(head);
 	return 0;
 }
