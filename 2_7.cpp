@@ -98,7 +98,7 @@ bool isPalindrome1(node *head)//栈
 		slow = slow->next;
 		fast = fast->next->next;
 	}
-	if(fast)//偶数个节点
+	if(fast)//奇数个节点
 		slow = slow->next;
 	while(slow)
 	{
