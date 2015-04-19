@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stack>
 using namespace std;
 
 typedef struct node{
@@ -84,15 +85,42 @@ bool isPalindrome(node *head, node *new_head)
 	return true;
 }
 
+bool isPalindrome1(node *head)//栈
+{
+	if(!head)
+		return false;
+	node *slow = head;
+	node *fast = head;
+	stack<int> sta;
+	while(fast && fast->next)
+	{
+		sta.push(slow->data);
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+	if(fast)//偶数个节点
+		slow = slow->next;
+	while(slow)
+	{
+		if(slow->data!=sta.top())
+			return false;
+		sta.pop();
+		slow = slow->next;
+	}
+	return true;
+}
 int main()
 {
 	//int a[]={1,2,3,4,5,4,3,2,1};
-	int a[]={1,2,3,4,5,4,7,2,0};
-	//int a[]={};
-	node *head = LinkList(a,9);
+	//int a[]={1,2,3,4,5,4,7,2,0};
+	//int a[]={1,2,3,4,5,4,7,2};
+	//int a[]={1,2,3,4,4,3,2,1};
+	int a[]={};
+	node *head = LinkList(a,0);
 	print(head);
 	node *new_head = Transpose(head);
 	print(new_head);
 	cout<<isPalindrome(head,new_head);
+	cout<<isPalindrome1(head);
 	return 0;
 }
